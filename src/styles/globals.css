@@ -2,3 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  .font-stroke {
+    -webkit-text-stroke: 0.3px black;
+  } 
+
+  .font-stroke-out {
+    text-shadow: 
+        -1px -1px 0 black,  
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+  } 
+
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
