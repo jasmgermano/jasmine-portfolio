@@ -29,7 +29,7 @@ export default function SkillCard( { title, level, knowledge }: Readonly<SkillCa
     }
 
     return (
-        <div className="flex flex-col items-center justify-start w-full bg-white rounded-[4rem] border-2 border-black shadow-custom-card h-72 z-10 px-7 pt-16 xl:h-[350px] 2xl:h-96 2xl:pt-20 2xl:gap-3">
+        <div className="flex flex-col items-center justify-start w-full bg-white rounded-[4rem] border-2 border-black shadow-custom-card h-72 z-10 px-7 pt-16 xl:pt-20 xl:h-[350px] 2xl:h-96 2xl:pt-20 2xl:gap-3">
             <h1 className="text-2xl font-bold text-left w-full uppercase 2xl:text-4xl 2xl:pl-3">{title}</h1>
             <div className="flex justify-center space-x-1 2xl:gap-2">
                 {renderLevel(level)}

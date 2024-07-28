@@ -20,6 +20,7 @@ const config: Config = {
       colors: {
         "dark-green": "#1E7047",
         "light-green": "#B8D39D",
+        "green": "#94AE79",
         "pink": "#FF3B99",
         "lilac": "#C3A8CC",
         "light-blue": "#A2C7FF",
@@ -29,6 +30,7 @@ const config: Config = {
       boxShadow: {
         'custom': '-3px 3px 0 black',
         'custom-card': '-6px 6px 0 black',
+        'custom-green': '6px 6px 0 #1E7047',
       },
       dropShadow: {
         'custom': '6px 0px 0 black',

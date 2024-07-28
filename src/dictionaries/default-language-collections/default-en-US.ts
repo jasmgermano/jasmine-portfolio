@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const enUS = {
     navigation: {
         home: 'Home',
@@ -37,6 +39,25 @@ export const enUS = {
             knowledge: ['MVC', 'API', '+'],
         },
         other: 'Other!',
+    },
+    projects: {
+        title: 'Projects!',
+        type: {
+            personal: 'Personal project',
+            study: 'Study project',
+            volunteer: 'Volunteer project',
+            academic: 'Academic project',
+        },
+        code : 'Code',
+        test: 'Test',
+    },
+    footer: {
+        title: 'Let\'s talk!',
+        name: 'Name',
+        message: 'Message',
+        send: 'Send',
+        design : 'Designed by me',
+        messageExample: 'I would like to work with you!',
     },
     general: {
         and: 'and',

@@ -6,7 +6,7 @@ type containerProps = {
 
 export default function Container({ children }: Readonly<containerProps>) {
     return (
-        <div className="container mx-auto px-3 flex justify-between items-center lg:px-10">
+        <div className="container mx-auto px-3 flex justify-between items-center sm:px-10 lg:px-20">
             {children}
         </div>
     );

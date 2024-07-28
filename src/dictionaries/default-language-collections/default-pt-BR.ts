@@ -38,6 +38,25 @@ export const ptBR = {
         },
         other: 'Outras!',
     },
+    projects: {
+        title: 'Projetos!',
+        type: {
+            personal: 'Projeto pessoal',
+            study: 'Projeto de estudo',
+            volunteer: 'Projeto voluntário',
+            academic: 'Projeto acadêmico',
+        },
+        code : 'Código',
+        test: 'Teste',
+    },
+    footer: {
+        title: 'Vamos conversar!',
+        name: 'Nome',
+        message: 'Mensagem',
+        send: 'Enviar',
+        design : 'Design feito por mim',
+        messageExample: 'Gostaria de trabalhar com você!',
+    },
     general: {
         and: 'e',
     },

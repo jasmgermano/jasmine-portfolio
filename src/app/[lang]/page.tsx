@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { getDictionaryUseClient } from "@/dictionaries/default-dictionary-use-client";
 import { Locale } from "@/config/i18n.config";
 import Container from "@/components/Container";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "@/assets/images/header/logo.svg";
 import WhiteLogo from "@/assets/images/header/white-logo.svg";
@@ -23,6 +23,7 @@ import PictureOfMe from "@/assets/images/presentation/me.png";
 import Download from "@/assets/images/presentation/download.svg";
 import StarPresentation from "@/assets/images/presentation/star.svg";
 import StarBlueSkills from "@/assets/images/skills/star-blue.svg";
+import Stars from "@/assets/images/projects/stars.svg";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { iconFlag, iconFlagKey, locales, textFlag, textFlagKey } from "./locales";
@@ -30,6 +31,10 @@ import { useTheme } from "@/context/theme-context";
 import { useInView } from "react-intersection-observer";
 import TitleSection from "@/components/TitleSection";
 import SkillCard from "@/components/SkillCard";
+import Project from "@/components/Project";
+import Slider from "react-slick";
+import { useForm } from "react-hook-form";
+import { sendEmail } from "@/utils/send-email";
 
 const pinewood = localFont({ src: '../PinewoodSans.otf', variable: '--pinewoodSans' });
 
@@ -48,6 +53,47 @@ function MenuItems({ dict }: MenuItemsProps) {
   );
 }
 
+export type FormProps = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+type ContactProps = {
+  dict: ReturnType<typeof getDictionaryUseClient>;
+}
+
+const Contact: React.FC<ContactProps> = ({dict}) => {
+  const { register, handleSubmit, reset } = useForm<FormProps>();
+
+  function onSubmit(data: FormProps) {
+    sendEmail(data);
+    reset();
+  }
+
+  return (
+    <form onSubmit={ handleSubmit(onSubmit) } className="w-full flex flex-col items-center gap-5 lg:w-auto">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="flex flex-col items-center w-full">
+          <label htmlFor="name" className="w-full text-white text-lg uppercase text-left px-3">{dict.footer.name}</label>
+          <input type="text" id="name" placeholder="jasmine" autoComplete="off" className="w-full h-10 px-3 placeholder-light-blue border-b-2 border-white focus:outline-none bg-transparent text-white" {...register('name', { required: true })} />
+        </div>
+        <div className="flex flex-col items-center w-full">
+          <label htmlFor="email" className="w-full text-white text-lg uppercase text-left px-3">Email</label>
+          <input type="email" id="email" placeholder="jas@gmail.com" autoComplete="off" className="w-full h-10 px-3 placeholder-light-blue border-b-2 border-white focus:outline-none bg-transparent text-white" {...register('email', { required: true })} />
+        </div>
+      </div>
+      <div className="w-full flex flex-col items-center">
+        <label htmlFor="message" className="w-full text-white text-lg uppercase text-left px-3 mb-2">{dict.footer.message}</label>
+        <textarea id="message" placeholder={dict.footer.messageExample} autoComplete="off" className="w-full h-20 px-3 placeholder-light-blue border-b-2 border-white focus:outline-none bg-transparent text-white" {...register('message', { required: true })} />
+      </div>
+      <button className="bg-light-blue flex flex-col items-center px-8 py-3 mt-3 rounded-full shadow-custom border-2 border-black">
+        <span className="font-bold uppercase">{dict.footer.send}</span>
+      </button>
+    </form>
+  );
+}
+
 export default function Home({ params }: Readonly<{ params: { lang: Locale } }>) {
   const dict = getDictionaryUseClient(params.lang);
   const [isOpen, setIsOpen] = useState(false);
@@ -58,6 +104,23 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
   const flagIconSrc = iconFlag[lang as iconFlagKey]?.src;
   const flagIconAlt = iconFlag[lang as iconFlagKey]?.alt;
   const flagText = textFlag[lang as textFlagKey];
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setShowMenu(true);
+      } else {
+        setShowMenu(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -94,6 +157,15 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
         window.URL.revokeObjectURL(url);
       })
       .catch(error => alert(`Erro ao baixar o arquivo: ${error.message}`));
+  };
+
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
   };
 
   return (
@@ -206,52 +278,150 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
           </div>
         </Container>
       </section>
-      <section id="skills" className="bg-lilac py-10 dark:bg-darkest-gray px-20">
-        <div className="w-full flex flex-col justify-center items-center gap-12">
-          <div className="w-full flex justify-center md:justify-start">
-            <TitleSection title={dict.skills.title} subtitle={dict.skills.subtitle} />
-          </div>
-          <div className="w-80 grid grid-cols-1 gap-7 place-items-center md:w-[640px] md:grid-cols-2 lg:w-[940px] lg:grid-cols-3 xl:w-[1140px] 2xl:w-full">
-            <SkillCard title="JS" level={3} knowledge={dict.skills.js.knowledge} />
-            <SkillCard title="React" level={2} knowledge={dict.skills.react.knowledge} />
-            <SkillCard title="Next" level={1} knowledge={dict.skills.next.knowledge} />
-            <SkillCard title="ASP.NET" level={2} knowledge={dict.skills.aspnet.knowledge} />
-            <div className="flex flex-col items-center justify-start bg-white rounded-[4rem] w-80 border-2 border-black shadow-custom-card z-10 px-7 py-10 md:col-span-2 md:w-full md:h-72 xl:h-80 2xl:h-96 2xl:justify-center">
-              <TitleSection title={dict.skills.other} />
-              <ul className="grid grid-cols-1 gap-1 mt-4 text-2xl font-semibold md:grid-cols-2 xl:gap-x-10 2xl:text-4xl">
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>Git {dict.general.and} GitHub</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>HTML {dict.general.and} CSS</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>RDBMS {dict.general.and} SQL</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>TailwindCSS</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>Typescript</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>UX/UI Design</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
-                  <span>Next.JS</span>
-                </li>
-              </ul>
+      {/* habilidades */}
+      <section id="skills" className="bg-lilac py-10 dark:bg-darkest-gray relative">
+        <Container>
+          <div className="w-full flex flex-col justify-center items-center gap-12 mb-16 md:mb-28 xl:mb-32 2xl:mb-56">
+            <div className="w-full flex justify-center md:justify-start">
+              <TitleSection title={dict.skills.title} subtitle={dict.skills.subtitle} color="text-light-green" />
+            </div>
+            <div className="w-80 grid grid-cols-1 gap-7 place-items-center md:w-[640px] md:grid-cols-2 lg:w-[940px] lg:grid-cols-3 xl:w-[1140px] 2xl:w-full">
+              <SkillCard title="Javascript" level={3} knowledge={dict.skills.js.knowledge} />
+              <SkillCard title="React" level={2} knowledge={dict.skills.react.knowledge} />
+              <SkillCard title="Next.js" level={1} knowledge={dict.skills.next.knowledge} />
+              <SkillCard title="ASP.NET" level={2} knowledge={dict.skills.aspnet.knowledge} />
+              <div className="flex flex-col items-center justify-center bg-white rounded-[4rem] w-80 border-2 border-black shadow-custom-card z-10 px-7 py-10 md:col-span-2 md:w-full md:h-72 xl:h-[350px] 2xl:h-96 2xl:justify-start 2xl:pt-20">
+                <h1 className="text-2xl font-bold text-center w-full uppercase 2xl:text-4xl 2xl:pl-3">{dict.skills.other}</h1>
+                <ul className="grid grid-cols-1 gap-1 mt-4 text-xl font-semibold md:grid-cols-2 xl:gap-x-10 2xl:text-3xl">
+                  <li className="flex items-center gap-3">
+                    <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
+                    <span>Git {dict.general.and} GitHub</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
+                    <span>HTML {dict.general.and} CSS</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
+                    <span>RDBMS {dict.general.and} SQL</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
+                    <span>TailwindCSS</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
+                    <span>Typescript</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Image src={StarBlueSkills} alt="Star" className="h-7 w-7" />
+                    <span>UX/UI Design</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+        </Container>
+        <div className="absolute bottom-0 left-0 w-full bg-transparent">
+          <svg width="100%" viewBox="0 0 1920 320" fill="none" xmlns="http://www.w3.org/2000/svg" className={theme === 'light' ? 'fill-light-blue' : 'fill-dark-gray'}>
+            <path d="M-37 32L28.2333 58.7C93.4667 85 223.933 139 354.4 170.7C484.867 203 615.333 213 745.8 202.7C876.267 192 1006.73 160 1137.2 149.3C1267.67 139 1398.13 149 1528.6 133.3C1659.07 117 1789.53 75 1854.77 53.3L1920 32V320H1854.77C1789.53 320 1659.07 320 1528.6 320C1398.13 320 1267.67 320 1137.2 320C1006.73 320 876.267 320 745.8 320C615.333 320 484.867 320 354.4 320C223.933 320 93.4667 320 28.2333 320H-37V32Z" />
+          </svg>
         </div>
       </section>
+      {/* fim habilidades */}
+      {/* projetos */}
+      <section id="projects" className="bg-light-blue dark:bg-dark-gray py-5 relative">
+        <Container>
+          <div className="w-full flex flex-col justify-center items-center gap-16">
+            <div className="w-full flex justify-center md:justify-start">
+              <TitleSection title={dict.projects.title} color="text-lilac" />
+            </div>
+            <div className="w-full h-full mb-16 sm:mb-24 md:mb-28 lg:mb-32">
+              <Slider {...settings} className="w-full z-10">
+                <div className="px-5 pb-5">
+                  <Project title="Projeto 1" type={dict.projects.type.personal} techs={['React', 'Next.js', 'TailwindCSS']} dict={dict} />
+                </div>
+                <div className="px-5 pb-5">
+                  <Project title="Projeto 2" type={dict.projects.type.personal} techs={['React', 'Next.js', 'TailwindCSS']} dict={dict} />
+                </div>
+              </Slider>
+            </div>
+            <div className="absolute bottom-0 left-0 w-full bg-transparent z-0">
+              <svg width="100%" viewBox="0 0 2432 252" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1542.82 21.0136C1442.09 -49.9384 1211.34 186.489 1108.55 313.572V335H1779.54C1742.6 259.901 1643.55 91.9656 1542.82 21.0136Z" fill="#94AE79" />
+                <path d="M2349.66 33.9159C2252.92 -34.0718 1984.02 213.011 1885.31 334.784L1932.6 334.784H2577C2541.53 262.823 2446.4 101.903 2349.66 33.9159Z" fill="#94AE79" />
+                <path d="M1918.2 84.9203C1837.9 28.4582 1614.69 233.654 1532.75 334.784L1572.01 334.784H2106.92C2077.47 275.022 1998.51 141.382 1918.2 84.9203Z" fill="#94AE79" />
+                <path d="M289.266 21.0136C188.535 -49.9384 -42.2161 186.489 -145 313.572V335H525.986C489.051 259.901 389.998 91.9656 289.266 21.0136Z" fill="#94AE79" />
+                <path d="M1096.11 33.9159C999.368 -34.0718 730.466 213.011 631.755 334.784L679.05 334.784H1323.45C1287.98 262.823 1192.85 101.903 1096.11 33.9159Z" fill="#94AE79" />
+                <path d="M664.651 84.9203C584.348 28.4582 361.133 233.654 279.193 334.784L318.453 334.784H853.365C823.92 275.022 744.955 141.382 664.651 84.9203Z" fill="#94AE79" />
+              </svg>
+            </div>
+            <Image src={Stars} alt="Stars" className="absolute left-16 bottom-10 sm:right-24 sm:bottom-20 lg:right-24 lg:bottom-32 w-10" />
+          </div>
+        </Container>
+      </section>
+      {/* footer */}
+      <footer id="contact" className="bg-pink dark:bg-black pt-16">
+        <Container>
+          <div className="w-full flex flex-col justify-center items-center">
+            <div className="w-full flex flex-col justify-center items-center gap-3 lg:flex-row lg:gap-20">
+              <div className="w-full flex flex-col justify-center items-center mb-5 md:justify-start gap-2 lg:w-auto">
+                <h1 className="text-2xl font-bold text-center text-white lg:text-4xl">{dict.footer.title}</h1>
+                <p className="w-72 text-white text-center text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aliquid delectus illum fuga iusto dolores ea.</p>
+                <div className="flex justify-center items-center gap-1 mb-4">
+                  <a href="https://www.linkedin.com/in/jasmgermano/" target="_blank" rel="noopener noreferrer">
+                    <svg width="32" height="32" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M48.2917 7.625C49.6399 7.625 50.9328 8.16056 51.8861 9.11387C52.8394 10.0672 53.375 11.3601 53.375 12.7083V48.2917C53.375 49.6399 52.8394 50.9328 51.8861 51.8861C50.9328 52.8394 49.6399 53.375 48.2917 53.375H12.7083C11.3601 53.375 10.0672 52.8394 9.11387 51.8861C8.16056 50.9328 7.625 49.6399 7.625 48.2917V12.7083C7.625 11.3601 8.16056 10.0672 9.11387 9.11387C10.0672 8.16056 11.3601 7.625 12.7083 7.625H48.2917ZM47.0208 47.0208V33.55C47.0208 31.3525 46.1479 29.2449 44.594 27.691C43.0401 26.1371 40.9325 25.2642 38.735 25.2642C36.5746 25.2642 34.0583 26.5858 32.8383 28.5683V25.7471H25.7471V47.0208H32.8383V34.4904C32.8383 32.5333 34.4142 30.9321 36.3713 30.9321C37.315 30.9321 38.2201 31.307 38.8874 31.9743C39.5547 32.6416 39.9296 33.5467 39.9296 34.4904V47.0208H47.0208ZM17.4867 21.7567C18.6191 21.7567 19.7052 21.3068 20.506 20.506C21.3068 19.7052 21.7567 18.6191 21.7567 17.4867C21.7567 15.1229 19.8504 13.1913 17.4867 13.1913C16.3475 13.1913 15.2549 13.6438 14.4493 14.4493C13.6438 15.2549 13.1913 16.3475 13.1913 17.4867C13.1913 19.8504 15.1229 21.7567 17.4867 21.7567ZM21.0196 47.0208V25.7471H13.9792V47.0208H21.0196Z" fill="white" />
+                    </svg>
+                  </a>
+                  <a href="" target="_blank" rel="noopener noreferrer">
+                    <svg width="32" height="32" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M30.5 5.08331C27.1623 5.08331 23.8572 5.74073 20.7735 7.01804C17.6898 8.29535 14.8879 10.1675 12.5277 12.5277C7.76119 17.2942 5.08337 23.7591 5.08337 30.5C5.08337 41.7341 12.378 51.2654 22.4684 54.6458C23.7392 54.8491 24.1459 54.0612 24.1459 53.375V49.0796C17.1055 50.6046 15.6059 45.6737 15.6059 45.6737C14.4367 42.7254 12.7846 41.9375 12.7846 41.9375C10.4717 40.3616 12.9625 40.4125 12.9625 40.4125C15.5042 40.5904 16.8513 43.0304 16.8513 43.0304C19.0625 46.8937 22.7988 45.75 24.2475 45.14C24.4763 43.4879 25.1371 42.3696 25.8488 41.7341C20.2063 41.0987 14.2842 38.9129 14.2842 29.2291C14.2842 26.4079 15.25 24.1458 16.9021 22.3412C16.648 21.7058 15.7584 19.0625 17.1563 15.6312C17.1563 15.6312 19.2913 14.945 24.1459 18.2237C26.1538 17.6646 28.3396 17.385 30.5 17.385C32.6605 17.385 34.8463 17.6646 36.8542 18.2237C41.7088 14.945 43.8438 15.6312 43.8438 15.6312C45.2417 19.0625 44.3521 21.7058 44.098 22.3412C45.75 24.1458 46.7159 26.4079 46.7159 29.2291C46.7159 38.9383 40.7684 41.0733 35.1005 41.7087C36.0155 42.4966 36.8542 44.0471 36.8542 46.4108V53.375C36.8542 54.0612 37.2609 54.8746 38.5571 54.6458C48.6475 51.24 55.9167 41.7341 55.9167 30.5C55.9167 27.1622 55.2593 23.8571 53.982 20.7734C52.7047 17.6897 50.8325 14.8878 48.4723 12.5277C46.1122 10.1675 43.3103 8.29535 40.2266 7.01804C37.1429 5.74073 33.8378 5.08331 30.5 5.08331Z" fill="white" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <Contact dict={dict} />
+            </div>
+            <Image src={WhiteLogo} alt="Logo" className="h-8 w-14 mt-10" />
+            <div className="lg:flex pb-3 w-full justify-center items-center gap-2 flex-col mt-2">
+              <div className="flex flex-col justify-center items-center lg:flex-row lg:gap-1">
+                <span className="text-white text-sm">{dict.footer.design}</span>
+                <span className="text-white text-sm">© 2024 Jasmine Germano</span>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </footer>
+      <div className={`fixed right-5 transform -translate-y-1/2 z-50 ${showMenu ? '-bottom-10' : 'hidden'}`}>
+        <ul className="flex flex-col items-center gap-4">
+          <li>
+            <a href="#">
+              <Image src={theme === 'light' ? Star : StarBlue} alt="Star" className="h-6 w-6" />
+            </a>
+          </li>
+          <li>
+            <a href="#about">
+              <Image src={theme === 'light' ? Star : StarBlue} alt="Star" className="h-6 w-6" />
+            </a>
+          </li>
+          <li>
+            <a href="#skills">
+              <Image src={theme === 'light' ? Star : StarBlue} alt="Star" className="h-6 w-6" />
+            </a>
+          </li>
+          <li>
+            <a href="#projects">
+              <Image src={theme === 'light' ? Star : StarBlue} alt="Star" className="h-6 w-6" />
+            </a>
+          </li>
+          <li>
+            <a href="#contact" className="text-white text-lg">
+              <Image src={theme === 'light' ? Star : StarBlue} alt="Star" className="h-6 w-6" />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
