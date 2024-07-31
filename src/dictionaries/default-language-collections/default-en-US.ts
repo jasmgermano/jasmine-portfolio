@@ -4,6 +4,7 @@ export const enUS = {
     navigation: {
         home: 'Home',
         about: 'About',
+        skills: 'Skills',
         projects: 'Projects',
         contact: 'Contact',
     },
@@ -16,7 +17,7 @@ export const enUS = {
     },
     presentation: {
         title: 'Hi, I am Jasmine!',
-        description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        description: ' I am a full stack web developer, graduated in Computer Science from the Federal University of Alfenas. I am passionate about technology and design, and I am always looking for new challenges and learning.',
         altPictureOfMe: 'Image of a light skin girl, with dark curly hair, wearing a white headband and silver hoops.',
         downloadResume: 'Download resume',
     },
@@ -48,11 +49,30 @@ export const enUS = {
             volunteer: 'Volunteer project',
             academic: 'Academic project',
         },
-        code : 'Code',
-        test: 'Test',
+        button: {
+            code: 'Code',
+            test: 'Test',
+        },
+        adotarProject: {
+            title: 'Adotar é LegAU Project',
+            description: 'Volunteer website to promote the adoption and sponsorship of animals, with an informative page about responsible adoption. Implementation of animal profiles for adoption, including details and photos, with a login system for administrators to register new animals.',
+        },
+        pedraPapelTesouraProject: {
+            title: 'Rock, Paper, Scissors Project',
+            description: 'Classic rock, paper, scissors game, with a graphical interface. Implementation of victory rules and score counting.',
+        },
+        luzinhaProject: {
+            title: 'Luzinha Project',
+            description: 'Academic project for the discipline of Web Programming. Website for a fictional company that sells decorative lights, with a product catalog, shopping cart, and user registration.',
+        },
+        talesLudosProject: {
+            title: 'Tales Ludos Project',
+            description: 'My college final project. Evolutionary maintenance of a tool for creating educational games, with the addition of new features and design improvements.',
+        },
     },
     footer: {
         title: 'Let\'s talk!',
+        description: 'I am always open to new opportunities and collaborations. Get in touch with me!',
         name: 'Name',
         message: 'Message',
         send: 'Send',

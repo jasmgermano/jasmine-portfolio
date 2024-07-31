@@ -12,9 +12,15 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    } else {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      setTheme(systemTheme);
+      document.documentElement.classList.toggle('dark', systemTheme === 'dark');
+    }
   }, []);
 
   const toggleTheme = () => {

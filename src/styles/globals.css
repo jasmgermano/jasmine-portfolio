@@ -5,6 +5,8 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+@import 'flowbite';
+
 
 @keyframes float {
   0% {
@@ -30,6 +32,17 @@
         -1px 1px 0 black,
         1px 1px 0 black;
   } 
+
+  .star-image {
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+  }
+  
+  .star-image:hover {
+    border-radius: 50%; /* Transforma a imagem em um círculo */
+    width: 1.5rem; /* Ajusta o tamanho da imagem no hover, se necessário */
+    height: 1.5rem; /* Ajusta o tamanho da imagem no hover, se necessário */
+    /* Você pode adicionar outros estilos, como alterar a cor de fundo ou adicionar uma borda */
+  }
 
 }
 
