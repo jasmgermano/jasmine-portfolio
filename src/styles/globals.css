@@ -25,6 +25,10 @@
     -webkit-text-stroke: 0.3px black;
   } 
 
+  .font-stroke-mobile {
+    -webkit-text-stroke: 0.5px black;
+  } 
+
   .font-stroke-out {
     text-shadow: 
         -1px -1px 0 black,  

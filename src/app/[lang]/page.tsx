@@ -264,7 +264,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                 </div>
                 <h2 className={`text-2xl font-extrabold uppercase -mt-2 lg:text-3xl ${lang === 'en-US' ? 'order-4 mt-0' : 'order-3'} dark:text-light-blue`}>{dict.header.developer}</h2>
                 <div className={`bg-lilac text-white font-bold rounded-full border-[1.5px] border-black ${pinewood.className} text-3xl 
-                    font-stroke flex justify-center items-center px-7 pt-2 h-11 lg:text-4xl lg:px-10 ${lang === 'en-US' ? 'order-3' : 'order-4'}`}>
+                    font-stroke-mobile flex justify-center items-center px-7 pt-2 h-11 md:font-stroke lg:text-4xl lg:px-10 ${lang === 'en-US' ? 'order-3' : 'order-4'}`}>
                   <span className="text-light-green">FULL STACK</span>
                 </div>
                 <div className="flex mt-3 gap-1 order-5 lg:flex-col lg:-mr-[410px] lg:-mt-28">
