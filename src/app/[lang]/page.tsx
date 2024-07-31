@@ -285,7 +285,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
         className={`bg-pink dark:bg-black pb-10 `}
         ref={ref}>
         <Container>
-          <div className={`flex flex-col justify-center items-center lg:px-10 w-full gap-4 lg:flex-row lg:gap-0 lg:-mt-6 transition-transform duration-1000 ${inView ? 'transform translate-y-0' : 'transform translate-y-10 opacity-0'}`}>
+          <div className={`flex flex-col justify-center items-center lg:px-10 w-full gap-4 lg:flex-row lg:gap-0 lg:-mt-6 transition-transform duration-300 lg:duration-1000 ${inView ? 'transform translate-y-0' : 'transform translate-y-10 opacity-0'}`}>
             <div className="mx-auto -mt-10 lg:-mt-0 lg:order-2 lg:w-1/3 lg:flex lg:flex-col lg:items-center">
               <Image src={PictureOfMe} alt="Picture of me" className="h-40 w-40 lg:h-52 lg:w-52" />
               <button onClick={downloadResume} className="hidden bg-light-blue flex-col items-center px-8 py-3 mt-3 rounded-full shadow-custom border-2 border-black lg:flex">
