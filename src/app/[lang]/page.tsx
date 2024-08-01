@@ -43,25 +43,6 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import LateralMenuItem from "@/components/LateralMenuItem";
 
 
-const pinewood = localFont({ src: '../PinewoodSans.otf', variable: '--pinewoodSans' });
-
-type MenuItemsProps = {
-  dict: ReturnType<typeof getDictionaryUseClient>;
-  closeMenu: () => void;
-};
-
-function MenuItems({ dict, closeMenu }: MenuItemsProps) {
-  return (
-    <>
-      <MenuItem title={dict.navigation.home} url="/" closeMenu={closeMenu} />
-      <MenuItem title={dict.navigation.about} url="/#about" closeMenu={closeMenu} />
-      <MenuItem title={dict.navigation.skills} url="/#skills" closeMenu={closeMenu} />
-      <MenuItem title={dict.navigation.projects} url="/#projects" closeMenu={closeMenu} />
-      <MenuItem title={dict.navigation.contact} url="/#contact" closeMenu={closeMenu} />
-    </>
-  );
-}
-
 export type FormProps = {
   name: string;
   email: string;
@@ -126,7 +107,6 @@ const Contact: React.FC<ContactProps> = ({ dict }) => {
 export default function Home({ params }: Readonly<{ params: { lang: Locale } }>) {
   const dict = getDictionaryUseClient(params.lang);
   const [isOpen, setIsOpen] = useState(false);
-
   
   const { lang } = useParams();
   const pathName = usePathname();
@@ -181,7 +161,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = 'resume.pdf';
+      a.download = `resume-${lang}.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -235,11 +215,19 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                     </button>
                     <div className={`fixed top-0 right-0 h-full w-full transition-all duration-500 ease-in-out ${isOpen ? 'scale-100' : 'scale-0'} bg-white ${isOpen ? 'rounded-none' : 'rounded-full'} z-40 flex flex-col justify-center items-center dark:bg-dark-gray`}>
                       <ul className="flex flex-col items-center">
-                        <MenuItems dict={dict} closeMenu={() => setIsOpen(false)} />
+                        <MenuItem title={dict.navigation.home} url="/" closeMenu={() => setIsOpen(false)} />
+                        <MenuItem title={dict.navigation.about} url="/#about" closeMenu={() => setIsOpen(false)} />
+                        <MenuItem title={dict.navigation.skills} url="/#skills" closeMenu={() => setIsOpen(false)} />
+                        <MenuItem title={dict.navigation.projects} url="/#projects" closeMenu={() => setIsOpen(false)} />
+                        <MenuItem title={dict.navigation.contact} url="/#contact" closeMenu={() => setIsOpen(false)} />
                       </ul>
                     </div>
                     <ul className="hidden lg:flex gap-4 items-center justify-end">
-                      <MenuItems dict={dict} closeMenu={() => setIsOpen(false)} />
+                    <MenuItem title={dict.navigation.home} url="/" closeMenu={() => setIsOpen(false)} />
+                      <MenuItem title={dict.navigation.about} url="/#about" closeMenu={() => setIsOpen(false)} />
+                      <MenuItem title={dict.navigation.skills} url="/#skills" closeMenu={() => setIsOpen(false)} />
+                      <MenuItem title={dict.navigation.projects} url="/#projects" closeMenu={() => setIsOpen(false)} />
+                      <MenuItem title={dict.navigation.contact} url="/#contact" closeMenu={() => setIsOpen(false)} />
                     </ul>
                   </div>
                 </nav>

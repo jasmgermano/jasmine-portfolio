@@ -4,7 +4,10 @@ import fs from 'fs';
 
 export async function GET(req: NextRequest) {
   try {
-    const filePath = path.resolve('.', 'public', 'resume.pdf');
+    const { searchParams } = new URL(req.nextUrl);
+    const locale = searchParams.get('locale') || 'en-US';
+
+    const filePath = path.resolve('.', 'public', `resume-${locale}.pdf`);
 
     // Verificar se o arquivo existe
     if (!fs.existsSync(filePath)) {
@@ -16,7 +19,7 @@ export async function GET(req: NextRequest) {
     const response = new NextResponse(fileBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": "attachment; filename=resume.pdf",
+        "Content-Disposition": `attachment; filename=resume-${locale}.pdf`,
       },
     });
 
