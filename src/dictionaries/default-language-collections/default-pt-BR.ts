@@ -12,6 +12,7 @@ export const ptBR = {
         altPortfolioStar: 'Imagem de uma estrela de 10 pontas com pontos simétricos e afiados irradiando para fora do centro.',
         nameAlt: `Imagem exibindo o nome do desenvolvedor, representando o proprietário deste portfólio.`,
         developer: 'Desenvolvedora',
+        fullstackAlt: 'Imagem com o texto "Full Stack", complementando a descrição da desenvolvedora.',
     },
     presentation: {
         title: 'Oi, eu sou a Jasmine!',

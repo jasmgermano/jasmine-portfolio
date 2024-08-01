@@ -14,6 +14,7 @@ export const enUS = {
         altPortfolioStar: 'Image of a 10-pointed star with symmetrical, sharp points radiating outward from the center.',
         nameAlt: `Image displaying the developer's name, representing the owner of this portfolio.`,
         developer: 'Developer',
+        fullstackAlt: 'Image with the text "Full Stack", complementing the developer description.',
     },
     presentation: {
         title: 'Hi, I am Jasmine!',
