@@ -161,7 +161,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = `jasmine-resume.pdf`;
+      a.download = `jasmine-resume-${lang}.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
