@@ -9,7 +9,6 @@ export const enUS = {
         contact: 'Contact',
     },
     header: {
-        port: 'Port',
         folio: 'Folio',
         altPortfolioStar: 'Image of a 10-pointed star with symmetrical, sharp points radiating outward from the center.',
         nameAlt: `Image displaying the developer's name, representing the owner of this portfolio.`,

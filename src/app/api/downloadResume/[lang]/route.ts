@@ -4,14 +4,12 @@ import fs from 'fs';
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.nextUrl);
-    const locale = searchParams.get('locale') || 'en-US';
+    const lang = req.nextUrl.pathname.split('/')[3];
 
-    const filePath = path.resolve('.', 'public', `resume-${locale}.pdf`);
+    const filePath = path.resolve('.', 'public', `resume-${lang}.pdf`);
 
-    // Verificar se o arquivo existe
     if (!fs.existsSync(filePath)) {
-      return NextResponse.json({ message: 'Arquivo não encontrado' }, { status: 404 });
+      return NextResponse.json({ message: `resume-${lang}.pdf não encontrado` }, { status: 404 });
     }
 
     const fileBuffer = fs.readFileSync(filePath);
@@ -19,7 +17,7 @@ export async function GET(req: NextRequest) {
     const response = new NextResponse(fileBuffer, {
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=resume-${locale}.pdf`,
+        "Content-Disposition": `attachment; filename=resume-${lang}.pdf`,
       },
     });
 

@@ -7,8 +7,7 @@ export const ptBR = {
         contact: 'Contato',
     },
     header: {
-        port: 'Porti',
-        folio: 'Folio',
+        folio: 'Fólio',
         altPortfolioStar: 'Imagem de uma estrela de 10 pontas com pontos simétricos e afiados irradiando para fora do centro.',
         nameAlt: `Imagem exibindo o nome do desenvolvedor, representando o proprietário deste portfólio.`,
         developer: 'Desenvolvedora',

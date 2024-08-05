@@ -149,7 +149,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
   });
   
   const downloadResume = () => {
-    fetch('../api/downloadResume')
+    fetch('./api/downloadResume/' + lang)
     .then(response => {
       if (!response.ok) {
         throw new Error('Erro ao baixar o arquivo');
@@ -161,7 +161,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = `resume-${lang}.pdf`;
+      a.download = `jasmine-resume.pdf`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -242,8 +242,7 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                 <div className="flex justify-center items-center relative lg:-ml-96 lg:-mb-10 order-1">
                   <Image src={theme === 'light' ? PortfolioStar : PortifolioStarBlack} alt={dict.header.altPortfolioStar} className="h-28" />
                   <span className="absolute text-white font-bold text-xl uppercase text-center -rotate-[8deg] dark:text-black">
-                    {dict.header.port}
-                    <span className="block -mt-3">{dict.header.folio}</span>
+                    Port<span className="block -mt-3">{dict.header.folio}</span>
                   </span>
                 </div>
                 <div className="flex items-center justify-center w-full order-2 gap-4 lg:gap-0">
