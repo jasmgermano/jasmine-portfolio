@@ -54,7 +54,7 @@ export const enUS = {
             test: 'Test',
         },
         adotarProject: {
-            title: 'Adotar é LegAU',
+            title: 'Adotar é Leg(AU)',
             description: 'Volunteer website to promote the adoption and sponsorship of animals, with an informative page about responsible adoption. Implementation of animal profiles for adoption, including details and photos, with a login system for administrators to register new animals.',
         },
         pedraPapelTesouraProject: {

@@ -52,7 +52,7 @@ export const ptBR = {
             test: 'Teste',
         },
         adotarProject: {
-            title: 'Adotar é LegAU',
+            title: 'Adotar é Leg(AU)',
             description: 'Site voluntário para promover a adoção e apadrinhamento de animais, com uma página informativa sobre adoção responsável. Implementação de perfis de animais para adoção, incluindo detalhes e fotos, com sistema de login para administradores cadastrarem novos animais.',
         },
         pedraPapelTesouraProject: {
