@@ -52,19 +52,19 @@ export const ptBR = {
             test: 'Teste',
         },
         adotarProject: {
-            title: 'Projeto Adotar é LegAU',
+            title: 'Adotar é LegAU',
             description: 'Site voluntário para promover a adoção e apadrinhamento de animais, com uma página informativa sobre adoção responsável. Implementação de perfis de animais para adoção, incluindo detalhes e fotos, com sistema de login para administradores cadastrarem novos animais.',
         },
         pedraPapelTesouraProject: {
-            title: 'Projeto Pedra, Papel e Tesoura',
+            title: 'Pedra, Papel e Tesoura',
             description: 'Jogo clássico de pedra, papel e tesoura, com interface gráfica. Implementação de regras de vitória e contagem de pontos.',
         },
         luzinhaProject: {
-            title: 'Projeto Luzinha',
+            title: 'Luzinha',
             description: 'Projeto de estudo para aprimorar habilidades em HTML, CSS e JavaScript. A página mostra luzes de natal e o usuário pode ligá-las e desligá-las, além de controlar a intensidade da luz.',
         },
         talesLudosProject: {
-            title: 'Projeto Tales Ludos',
+            title: 'Tales Ludos',
             description: 'Meu trabalho de conclusão de curso. Manutenção evolutiva de uma ferramenta para criação de jogos educacionais, com a adição de novas funcionalidades e melhorias no design.',
         },
     },

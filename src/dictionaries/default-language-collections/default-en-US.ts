@@ -54,19 +54,19 @@ export const enUS = {
             test: 'Test',
         },
         adotarProject: {
-            title: 'Adotar é LegAU Project',
+            title: 'Adotar é LegAU',
             description: 'Volunteer website to promote the adoption and sponsorship of animals, with an informative page about responsible adoption. Implementation of animal profiles for adoption, including details and photos, with a login system for administrators to register new animals.',
         },
         pedraPapelTesouraProject: {
-            title: 'Rock, Paper, Scissors Project',
+            title: 'Rock, Paper, Scissors',
             description: 'Classic rock, paper, scissors game, with a graphical interface. Implementation of victory rules and score counting.',
         },
         luzinhaProject: {
-            title: 'Luzinha Project',
+            title: 'Luzinha',
             description: 'Academic project for the discipline of Web Programming. Website for a fictional company that sells decorative lights, with a product catalog, shopping cart, and user registration.',
         },
         talesLudosProject: {
-            title: 'Tales Ludos Project',
+            title: 'Tales Ludos',
             description: 'My college final project. Evolutionary maintenance of a tool for creating educational games, with the addition of new features and design improvements.',
         },
     },
