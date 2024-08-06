@@ -17,7 +17,7 @@ export const enUS = {
     },
     presentation: {
         title: 'Hi, I am Jasmine!',
-        description: ' I am a full stack web developer, graduated in Computer Science from the Federal University of Alfenas. I am passionate about technology and design, and I am always looking for new challenges and learning.',
+        description: ' I am a full stack web developer, graduated in Computer Science at the Federal University of Alfenas. I am passionate about technology and design, and I am always looking for new challenges and learning.',
         altPictureOfMe: 'Image of a light skin girl, with dark curly hair, wearing a white headband and silver hoops.',
         downloadResume: 'Download resume',
     },
@@ -63,11 +63,11 @@ export const enUS = {
         },
         luzinhaProject: {
             title: 'Luzinha',
-            description: 'Academic project for the discipline of Web Programming. Website for a fictional company that sells decorative lights, with a product catalog, shopping cart, and user registration.',
+            description: 'Study Project to Enhance Skills in HTML, CSS, and JavaScript. The page displays Christmas lights, allowing the user to turn them on and off, as well as control their brightness.',
         },
         talesLudosProject: {
             title: 'Tales Ludos',
-            description: 'My college final project. Evolutionary maintenance of a tool for creating educational games, with the addition of new features and design improvements.',
+            description: 'My college final project. Evolutionary maintenance of a tool responsible for creating educational games, with the addition of new features and design improvements.',
         },
     },
     footer: {
