@@ -214,7 +214,6 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                     </button>
                     <div className={`fixed top-0 right-0 h-full w-full transition-all duration-500 ease-in-out ${isOpen ? 'scale-100' : 'scale-0'} bg-white ${isOpen ? 'rounded-none' : 'rounded-full'} z-40 flex flex-col justify-center items-center dark:bg-dark-gray`}>
                       <ul className="flex flex-col items-center">
-                        <MenuItem title={dict.navigation.home} url="/" closeMenu={() => setIsOpen(false)} />
                         <MenuItem title={dict.navigation.about} url="/#about" closeMenu={() => setIsOpen(false)} />
                         <MenuItem title={dict.navigation.skills} url="/#skills" closeMenu={() => setIsOpen(false)} />
                         <MenuItem title={dict.navigation.projects} url="/#projects" closeMenu={() => setIsOpen(false)} />
@@ -222,7 +221,6 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                       </ul>
                     </div>
                     <ul className="hidden lg:flex gap-4 items-center justify-end">
-                    <MenuItem title={dict.navigation.home} url="/" closeMenu={() => setIsOpen(false)} />
                       <MenuItem title={dict.navigation.about} url="/#about" closeMenu={() => setIsOpen(false)} />
                       <MenuItem title={dict.navigation.skills} url="/#skills" closeMenu={() => setIsOpen(false)} />
                       <MenuItem title={dict.navigation.projects} url="/#projects" closeMenu={() => setIsOpen(false)} />
