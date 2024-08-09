@@ -1,5 +1,3 @@
-import { appWithTranslation } from 'next-i18next';
-import type { AppProps } from 'next/app';
 import { Poppins } from 'next/font/google';
 import '@/styles/globals.css';
 import { i18nConfig } from '@/config/i18n.config';

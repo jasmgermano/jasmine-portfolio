@@ -1,5 +1,4 @@
 'use client';
-import localFont from "next/font/local";
 import { getDictionaryUseClient } from "@/dictionaries/default-dictionary-use-client";
 import { Locale } from "@/config/i18n.config";
 import Container from "@/components/Container";
