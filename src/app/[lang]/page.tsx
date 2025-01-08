@@ -40,6 +40,8 @@ import { useForm } from "react-hook-form";
 import { sendEmail } from "@/utils/send-email";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import LateralMenuItem from "@/components/LateralMenuItem";
+import Cripa from "@/assets/images/projects/cripa.png";
+import Copiao from "@/assets/images/projects/copiao.png";
 
 
 export type FormProps = {
@@ -353,6 +355,17 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
               <Slider {...settings} className="w-full z-10">
                 <div className="px-5 pb-5">
                   <Project 
+                    title={dict.projects.cripaProject.title} 
+                    type={dict.projects.type.personal} 
+                    techs={['React', 'Next.js', 'TailwindCSS', 'Typescript']} 
+                    dictButton={dict.projects.button} image={Cripa} 
+                    description={dict.projects.cripaProject.description} 
+                    codeUrl="https://github.com/jasmgermano/cripa"
+                    testUrl="https://cripa.netlify.app/"
+                  />              
+                </div>
+                <div className="px-5 pb-5">
+                  <Project 
                     title={dict.projects.adotarProject.title} 
                     type={dict.projects.type.volunteer} 
                     techs={['React', 'Next.js', 'TailwindCSS']} 
@@ -360,6 +373,17 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                     description={dict.projects.adotarProject.description} 
                     codeUrl="https://github.com/jasmgermano/pet-adoption-website"
                     testUrl="https://adotarelegau.vercel.app"
+                  />              
+                </div>
+                <div className="px-5 pb-5">
+                  <Project 
+                    title={dict.projects.copiaoProject.title} 
+                    type={dict.projects.type.personal} 
+                    techs={['React']} 
+                    dictButton={dict.projects.button} image={Copiao} 
+                    description={dict.projects.copiaoProject.description} 
+                    codeUrl="https://github.com/jasmgermano/copysymbols"
+                    testUrl="https://copiao.netlify.app/"
                   />              
                 </div>
                 <div className="px-5 pb-5">

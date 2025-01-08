@@ -69,6 +69,14 @@ export const enUS = {
             title: 'Tales Ludos',
             description: 'My college final project. Evolutionary maintenance of a tool responsible for creating educational games, with the addition of new features and design improvements.',
         },
+        cripaProject: {
+            title: 'Cripa',
+            description: 'Cripa is a challenging and fun cryptogram game, perfect for training your brain! The goal is to figure out the words based on the hints provided (The game is not available in an English version at this time).'
+        },
+        copiaoProject: {
+            title: 'Copião',
+            description: 'Study project. It is a simple yet very cool website, developed to make copying symbols and special characters easier.'
+        }
     },
     footer: {
         title: 'Let\'s talk!',

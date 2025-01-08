@@ -1,3 +1,5 @@
+import { title } from "process";
+
 export const ptBR = {
     navigation: {
         home: 'Início',
@@ -67,6 +69,14 @@ export const ptBR = {
             title: 'Tales Ludos',
             description: 'Meu trabalho de conclusão de curso. Manutenção evolutiva de uma ferramenta para criação de jogos educacionais, com a adição de novas funcionalidades e melhorias no design.',
         },
+        cripaProject: {
+            title: 'Cripa',
+            description: 'O cripa é um jogo de criptograma desafiador e divertido, perfeito para treinar o cérebro! O objetivo é descobrir as palavras com base em dicas fornecidas.'
+        },
+        copiaoProject: {
+            title: 'Copião',
+            description: 'Projeto para estudo. É um site simples mas bem legal, desenvolvido para facilitar a cópia de símbolos e caracteres especiais.'
+        }
     },
     footer: {
         title: 'Vamos conversar!',
