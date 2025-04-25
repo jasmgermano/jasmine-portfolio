@@ -22,7 +22,7 @@ export function generateStaticParams() {
 
 export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
   return (
-    <html lang={params.lang}>
+    <html lang={params.lang} className="scroll-smooth">
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
