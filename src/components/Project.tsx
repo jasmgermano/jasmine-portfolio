@@ -8,7 +8,7 @@ type ProjectBtnProps = {
 
 function ProjectBtn( {text, url}: Readonly<ProjectBtnProps> ) {
     return (
-        <a href={url} target="_blank" rel="noopener noreferrer"><button className="bg-pink text-white uppercase font-bold py-2 px-4 rounded-full shadow-custom border-2 border-black w-28 lg:w-40 lg:px-6 lg:py-4 lg:text-lg">{text}</button></a>
+        <a href={url} target="_blank" rel="noopener noreferrer"><button className="bg-pink text-white uppercase font-bold py-2 px-4 rounded-full shadow-custom border-2 border-black w-28 lg:w-40 lg:px-6 lg:py-4 lg:text-lg hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">{text}</button></a>
     );
 }
 
