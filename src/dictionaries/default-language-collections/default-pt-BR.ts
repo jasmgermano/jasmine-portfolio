@@ -76,7 +76,11 @@ export const ptBR = {
         copiaoProject: {
             title: 'Copião',
             description: 'Projeto para estudo. É um site simples mas bem legal, desenvolvido para facilitar a cópia de símbolos e caracteres especiais.'
-        }
+        },
+        rekoobProject: {
+            title: 'Rekoob',
+            description: 'Rekoob é maneira de criar uma retrospectiva de livros lidos no mês. Ele gera uma imagem com os livros lidos, usando suas estatísticas do skoob.',
+        },
     },
     footer: {
         title: 'Vamos conversar!',

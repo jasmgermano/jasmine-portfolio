@@ -27,6 +27,7 @@ import AdotarELegau from "@/assets/images/projects/adotarelegau.png";
 import RockPaperScissors from "@/assets/images/projects/game.gif";
 import Luzinhas from "@/assets/images/projects/luzinhas.gif";
 import TalesLudos from "@/assets/images/projects/talesludos.png";
+import Rekoob from "@/assets/images/projects/rekoob.png";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { iconFlag, iconFlagKey, locales, textFlag, textFlagKey } from "./locales";
@@ -362,6 +363,17 @@ export default function Home({ params }: Readonly<{ params: { lang: Locale } }>)
                     description={dict.projects.cripaProject.description} 
                     codeUrl="https://github.com/jasmgermano/cripa"
                     testUrl="https://cripa.netlify.app/"
+                  />              
+                </div>
+                <div className="px-5 pb-5">
+                  <Project 
+                    title={dict.projects.rekoobProject.title} 
+                    type={dict.projects.type.personal} 
+                    techs={['React', 'Next.js', 'TailwindCSS', 'Typescript']} 
+                    dictButton={dict.projects.button} image={Rekoob} 
+                    description={dict.projects.rekoobProject.description} 
+                    codeUrl="https://github.com/jasmgermano/skoob-recap"
+                    testUrl="https://rekoob.vercel.app/"
                   />              
                 </div>
                 <div className="px-5 pb-5">

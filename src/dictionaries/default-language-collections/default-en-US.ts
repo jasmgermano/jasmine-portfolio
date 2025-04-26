@@ -76,7 +76,11 @@ export const enUS = {
         copiaoProject: {
             title: 'Copião',
             description: 'Study project. It is a simple yet very cool website, developed to make copying symbols and special characters easier.'
-        }
+        },
+        rekoobProject: {
+            title: 'Rekoob',
+            description: "Rekoob is a way to create a retrospective of the books you've read during the month. It generates an image with the books you've read, using your statistics from Skoob."
+        },
     },
     footer: {
         title: 'Let\'s talk!',
